@@ -1,0 +1,17 @@
+D:\Projects\ASP.NETCore\IbiMovie\IbiMovie.Infra\obj\Debug\net6.0\IbiMovie.Infra.csproj.AssemblyReference.cache
+D:\Projects\ASP.NETCore\IbiMovie\IbiMovie.Infra\obj\Debug\net6.0\IbiMovie.Infra.GeneratedMSBuildEditorConfig.editorconfig
+D:\Projects\ASP.NETCore\IbiMovie\IbiMovie.Infra\obj\Debug\net6.0\IbiMovie.Infra.AssemblyInfoInputs.cache
+D:\Projects\ASP.NETCore\IbiMovie\IbiMovie.Infra\obj\Debug\net6.0\IbiMovie.Infra.AssemblyInfo.cs
+D:\Projects\ASP.NETCore\IbiMovie\IbiMovie.Infra\obj\Debug\net6.0\IbiMovie.Infra.csproj.CoreCompileInputs.cache
+D:\Projects\ASP.NETCore\IbiMovie\IbiMovie.Infra\bin\Debug\net6.0\IbiMovie.Infra.deps.json
+D:\Projects\ASP.NETCore\IbiMovie\IbiMovie.Infra\bin\Debug\net6.0\IbiMovie.Infra.dll
+D:\Projects\ASP.NETCore\IbiMovie\IbiMovie.Infra\bin\Debug\net6.0\IbiMovie.Infra.pdb
+D:\Projects\ASP.NETCore\IbiMovie\IbiMovie.Infra\bin\Debug\net6.0\IbiMovie.Application.dll
+D:\Projects\ASP.NETCore\IbiMovie\IbiMovie.Infra\bin\Debug\net6.0\IbiMovie.Core.dll
+D:\Projects\ASP.NETCore\IbiMovie\IbiMovie.Infra\bin\Debug\net6.0\IbiMovie.Application.pdb
+D:\Projects\ASP.NETCore\IbiMovie\IbiMovie.Infra\bin\Debug\net6.0\IbiMovie.Core.pdb
+D:\Projects\ASP.NETCore\IbiMovie\IbiMovie.Infra\obj\Debug\net6.0\IbiMovie.Infra.csproj.CopyComplete
+D:\Projects\ASP.NETCore\IbiMovie\IbiMovie.Infra\obj\Debug\net6.0\IbiMovie.Infra.dll
+D:\Projects\ASP.NETCore\IbiMovie\IbiMovie.Infra\obj\Debug\net6.0\refint\IbiMovie.Infra.dll
+D:\Projects\ASP.NETCore\IbiMovie\IbiMovie.Infra\obj\Debug\net6.0\IbiMovie.Infra.pdb
+D:\Projects\ASP.NETCore\IbiMovie\IbiMovie.Infra\obj\Debug\net6.0\ref\IbiMovie.Infra.dll

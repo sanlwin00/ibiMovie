@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\build\IbiMovie.Web.props" />
+</Project>

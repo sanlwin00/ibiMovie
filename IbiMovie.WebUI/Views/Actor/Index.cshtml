@@ -1,5 +1,4 @@
-﻿
-@{
+﻿@{
     ViewData["Title"] = "Actor";
 }
 
@@ -14,30 +13,33 @@
         </div>
     </div>    
 </form>
-<table class="table">
-    <thead>
-        <tr>
-            <th>Name</th>
-            <th>Movies</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var actor in Model)
-        {
+@if (Model != null)
+{
+    <table class="table">
+        <thead>
             <tr>
-                <td>@actor.Name</td>
-                <td>
-                    <ul>
-                        @foreach (var movieActor in actor.MovieActors)
-                        {
-                            <li>@movieActor.Movie.Title (@movieActor.Movie.ReleasedYear)</li>
-                        }
-                    </ul>
-                </td>
+                <th>Name</th>
+                <th>Movies</th>
             </tr>
-        }
-    </tbody>
-</table>
+        </thead>
+        <tbody>
+            @foreach (var actor in Model)
+            {
+                <tr>
+                    <td>@actor.Name</td>
+                    <td>
+                        <ul>
+                            @foreach (var movieActor in actor.MovieActors)
+                            {
+                                <li>@movieActor.Movie.Title (@movieActor.Movie.ReleasedYear)</li>
+                            }
+                        </ul>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
 <script>
     document.getElementById('search-form').addEventListener('submit', function (event) {
         event.preventDefault();

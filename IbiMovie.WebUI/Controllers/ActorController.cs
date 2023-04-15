@@ -30,7 +30,7 @@ namespace IbiMovie.WebUI.Controllers
 
                 if (!response.IsSuccessStatusCode)
                 {
-                    return View("Error");
+                    return View("Error", new Exception($"Status Code:{response.StatusCode}"));
                 }
 
                 var responseStream = await response.Content.ReadAsStreamAsync();

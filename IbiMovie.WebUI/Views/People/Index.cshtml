@@ -1,0 +1,53 @@
+﻿@{
+    ViewData["Title"] = "People";
+}
+
+<h2>People</h2>
+<form id="search-form" class="form-inline">
+    <div class="input-group mt-5 mb-2">
+        <input type="text" class="form-control" id="search-term" placeholder="Type a Star Wars character name (e.g Luke)..." aria-label="Filter actor">
+        <div class="input-group-append">
+            <button class="btn btn-outline-primary ms-1" type="submit">Search</button>
+            <a class="btn btn-outline-secondary" role="button" href="/People">Clear</a>
+        </div>
+    </div>
+</form>
+@if (Model != null)
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Height</th>
+                <th>Mass</th>
+                <th>Hair Color</th>
+                <th>Skin Color</th>
+                <th>Eye Color</th>
+                <th>Birth Year</th>
+                <th>Gender</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var person in Model)
+            {
+                <tr>
+                    <td>@person.Name</td>
+                    <td>@person.Height</td>
+                    <td>@person.Mass</td>
+                    <td>@person.HairColor</td>
+                    <td>@person.SkinColor</td>
+                    <td>@person.EyeColor</td>
+                    <td>@person.BirthYear</td>
+                    <td>@person.Gender</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+<script>
+    document.getElementById('search-form').addEventListener('submit', function (event) {
+        event.preventDefault();
+        var searchTerm = document.getElementById('search-term').value;
+        window.location.href = '/People/SearchByName?searchName=' + searchTerm;
+    });
+</script>

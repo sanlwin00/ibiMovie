@@ -1,0 +1,49 @@
+﻿@{
+    ViewData["Title"] = "Actor";
+}
+
+<h1>Actors</h1>
+
+<form id="search-form" class="form-inline">
+    <div class="input-group mt-5 mb-2">
+        <input type="text" class="form-control" id="search-term" placeholder="Type actor name and hit Enter to filter..." aria-label="Filter actor">
+        <div class="input-group-append">
+            <button class="btn btn-outline-primary ms-1" type="submit">Filter</button>
+            <a class="btn btn-outline-secondary" role="button" href="/Actor">Reset</a>
+        </div>
+    </div>    
+</form>
+@if (Model != null)
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Movies</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var actor in Model)
+            {
+                <tr>
+                    <td>@actor.Name</td>
+                    <td>
+                        <ul>
+                            @foreach (var movieActor in actor.MovieActors)
+                            {
+                                <li>@movieActor.Movie.Title (@movieActor.Movie.ReleasedYear)</li>
+                            }
+                        </ul>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+<script>
+    document.getElementById('search-form').addEventListener('submit', function (event) {
+        event.preventDefault();
+        var searchTerm = document.getElementById('search-term').value;
+        window.location.href = '/Actor/FilterByActorName?searchTerm=' + searchTerm;
+    });
+</script>

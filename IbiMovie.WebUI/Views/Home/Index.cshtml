@@ -1,8 +1,63 @@
 ﻿@{
     ViewData["Title"] = "Home Page";
 }
-
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <div class="card bg-light text-center mb-3">
+                <div class="card-body">
+                    <h1 class="card-title display-4">ibiMovie</h1>
+                    <p class="card-text">A Simple ASP.NET Core MVC Web Application</p>
+                    <div class="mb-2">
+                        <span class="badge bg-secondary">#.net-core</span>
+                        <span class="badge bg-secondary">#asp.net-core</span>
+                        <span class="badge bg-secondary">#webAPI</span>
+                        <span class="badge bg-secondary">#c#</span>
+                        <span class="badge bg-secondary">#entity-framework-core</span>
+                        <span class="badge bg-secondary">#mysql</span>
+                        <span class="badge bg-secondary">#clean-architecture</span>
+                        <span class="badge bg-secondary">#mvc</span>
+                        <span class="badge bg-secondary">#TDD</span>
+                        <span class="badge bg-secondary">#dependency-injection</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12">
+            <p><strong>ibiMovie</strong> is a web application developed using the <em>.NET Core</em> technology. 
+                <a href="/Actor">Actor page</a> showcases the association between actors and movies, allowing users to filter by actor names. 
+                <a href="/People">People page</a> allows users to search Star Wars character by name using SWAPI. Although PHP and Laravel are powerful technologies, I chose to use C# and ASP.NET Core MVC because of my proficiency in those languages.
+            </p>
+            <p>Despite the simplicity of the project requirements, I decided against building a monolithic application. As a seasoned technical lead and a <em>Clean Architecture</em> advocate, I wanted to <u>demonstrate my deep understanding of architectural best practices and design patterns.</u></p>
+            <p>The <a href="https://github.com/sanlwin00/ibiMovie">project</a> has the following structure:</p>
+            <ul class="list-unstyled">
+                <li>
+                    <span class="badge bg-secondary me-2">1</span><strong>ibiMovie.Core</strong>  project contains essential domain models, such as <em>Actor</em> and <em>Movie</em>, to encapsulate the core business logic and data structures.
+                </li>
+                <li>
+                    <span class="badge bg-secondary me-2">2</span><strong>ibiMovie.Application</strong> project to describe the application-specific business rules and the actions that the system can perform
+                </li>
+                <li>
+                    <span class="badge bg-secondary me-2">3</span><strong>ibiMovie.Infra</strong> project to manage database activities.
+                </li>
+                <li>
+                    <span class="badge bg-secondary me-2">4</span><strong>ibiMovie.WebAPI</strong> project for managing API endpoints while injecting dependencies at runtime.
+                </li>
+                <li>
+                    <span class="badge bg-secondary me-2">5</span><strong>ibiMovie.WebUI</strong> project to handle user interactions and views.
+                </li>                                
+                <li>
+                    <span class="badge bg-secondary me-2">6</span><strong>ibiMovie.Tests</strong> project to ensure the code's correctness and reliability.
+                </li>
+            </ul>
+            <p>By adhering to the Clean Architecture principles and software development best practices, I have created a <strong>scalable</strong>, <strong>maintainable</strong>, and <strong>testable</strong> application that meets the project requirements and demonstrates my expertise in software architecture.</p>
+            <div class="card bg-light text-center mb-3">
+            <blockquote class="blockquote text-muted">
+            <em>As a technical lead who is continuously striving to expand my skillset, I am training myself to become a <em>polyglot technologist</em>. I have a keen interest in exploring new programming languages and frameworks, including <em>PHP</em> and <em>Laravel</em>, to broaden my knowledge and adapt to diverse technology ecosystems.</em>
+            </blockquote>
+            </div>
+        </div>
+    </div>
 </div>

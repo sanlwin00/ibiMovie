@@ -1,13 +1,6 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using System.Net.Http;
-using System.Net.Http.Json;
-using System.Text.Json;
-using System.Threading.Tasks;
-using IbiMovie.Core;
-using IbiMovie.WebUI.Models;
+﻿using IbiMovie.WebUI.Models;
 using Microsoft.AspNetCore.Mvc;
-using NuGet.Protocol;
+using System.Text.Json;
 
 namespace IbiMovie.WebUI.Controllers
 {
@@ -35,32 +28,58 @@ namespace IbiMovie.WebUI.Controllers
         // Search by character name
         public async Task<IActionResult> SearchByName(string searchName)
         {
-            var response = await _httpClient.GetAsync("people");
-
-            if (response.IsSuccessStatusCode)
+            if (string.IsNullOrWhiteSpace(searchName))
             {
-                var content = await response.Content.ReadAsStringAsync();
-                var jsonDocument = JsonDocument.Parse(content);
-                var results = jsonDocument.RootElement.GetProperty("results");
-
-                var people = new List<PersonViewModel>();
-                foreach (var result in results.EnumerateArray())
-                {
-                    people.Add(new PersonViewModel(result));
-                }
-
-                if (!string.IsNullOrWhiteSpace(searchName))
-                {
-                    people = people.Where(p => p.Name.Contains(searchName, StringComparison.OrdinalIgnoreCase)).ToList();
-                }
-
-                return View("Index", people);
+                return View("Index", null);
             }
             else
             {
-                // Handle the error response
-                return View("Error");
+                try
+                {
+                    var response = await _httpClient.GetAsync("people");
+
+                    if (response.IsSuccessStatusCode)
+                    {
+                        var content = await response.Content.ReadAsStringAsync();
+                        var results = JsonDocument.Parse(content).RootElement.GetProperty("results");
+                        var filteredResults = results.EnumerateArray()
+                            .Where(element => element.GetProperty("name").GetString().Contains(searchName, StringComparison.OrdinalIgnoreCase))
+                            .ToList();
+
+                        return View("Index", await ConvertSWapiResultsToActorList(filteredResults));
+                    }
+                    else
+                    {
+                        return View("Error", new ErrorViewModel(new Exception(response.StatusCode.ToString())));
+                    }
+                }
+                catch (Exception ex)
+                {
+                    _logger.LogError(ex, "An error occurred while fetching the actors.");
+                    return View("Error", new ErrorViewModel(ex));
+                }
             }
+        }
+
+        // convert SWAPI response and create actor list
+        private async Task<List<ActorViewModel>> ConvertSWapiResultsToActorList(List<JsonElement> results)
+        {
+            var actors = new List<ActorViewModel>();
+            foreach (var result in results)
+            {
+                ActorViewModel actor = new ActorViewModel(result);
+                actor.Movies = new List<MovieViewModel>();
+                foreach (var filmApiUrl in result.GetProperty("films").EnumerateArray())
+                {
+                    var response = await _httpClient.GetAsync(new Uri(filmApiUrl.GetString()));
+                    var content = await response.Content.ReadAsStringAsync();
+                    var film = JsonDocument.Parse(content).RootElement;
+                    actor.Movies.Add(new MovieViewModel(film));
+                }
+
+                actors.Add(actor);
+            }
+            return actors;
         }
     }
 

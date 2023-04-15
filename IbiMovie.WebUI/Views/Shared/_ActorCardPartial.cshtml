@@ -1,0 +1,44 @@
+﻿<div class="container">
+    <div class="row">
+        @foreach (var actor in Model)
+        {
+            <div class="col-lg-4 col-md-6 col-sm-12 my-2">
+                <div class="card border border-info shadow-sm h-100">
+                    <div class="card-header">@actor.Name</div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-6">
+                                <p class="card-text">
+                                    <strong>Height:</strong> @actor.Height cm<br>
+                                    <strong>Mass:</strong> @actor.Mass kg<br>
+                                    <strong>Hair Color:</strong> @actor.Hair_Color
+                                </p>
+                            </div>
+                            <div class="col-6">
+                                <p class="card-text">
+                                    <strong>Eye Color:</strong> @actor.Eye_Color<br>
+                                    <strong>Birth Year:</strong> @actor.Birth_Year<br>
+                                    <strong>Gender:</strong> @actor.Gender
+                                </p>
+                            </div>
+                        </div>
+                        <h6 class="card-subtitle my-2 text-muted">Movies:</h6>
+                        @foreach (var m in actor.Movies)
+                        {
+                            <div class="card bg-light shadow-sm mb-2">
+                                <div class="card-body">
+                                    <h6 class="card-title">@m.Title</h6>
+                                    <p class="card-text">
+                                        <strong>Director:</strong> @m.Director<br>
+                                        <strong>Producer:</strong> @m.Producer<br>
+                                        <strong>Released Year:</strong> @m.Released_Date?.ToString("yyyy")
+                                    </p>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>

@@ -12,7 +12,7 @@ public class ActorServiceTests
     public ActorServiceTests()
     {
         var options = new DbContextOptionsBuilder<AppDbContext>()
-            .UseInMemoryDatabase(databaseName: "ActorMovieAppTest")
+            .UseInMemoryDatabase(databaseName: "ibiMovieAppTest")
             .Options;
 
         _dbContext = new AppDbContext(options);

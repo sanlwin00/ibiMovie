@@ -1,7 +1,7 @@
-﻿using IbiMovie.Core;
-using IbiMovie.WebUI.Models;
+﻿using IbiMovie.WebUI.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.DotNet.MSIdentity.Shared;
 using System.Text.Json;
 
 namespace IbiMovie.WebUI.Controllers
@@ -26,17 +26,26 @@ namespace IbiMovie.WebUI.Controllers
         {
             try
             {
-                var response = await _httpClient.GetAsync("actors");
+                var response = await _httpClient.GetAsync("actors");                
 
-                if (!response.IsSuccessStatusCode)
-                {
-                    return View("Error", new Exception($"Status Code:{response.StatusCode}"));
-                }
+                return View(await ConvertResponseContentToActorList(response.Content));
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "An error occurred while fetching the actors.");
+                return View("Error", new ErrorViewModel(ex));
+            }
+        }
+        
 
-                var responseStream = await response.Content.ReadAsStreamAsync();
-                var actors = await JsonSerializer.DeserializeAsync<IEnumerable<Actor>>(responseStream, _jsonSerializerOptions);
+        // Filter by actor name
+        public async Task<IActionResult> FilterByActorName(string searchTerm)
+        {         
+            try
+            {
+                var response = await _httpClient.GetAsync($"actors/{searchTerm}");
 
-                return View(actors);
+                return View("Index", await ConvertResponseContentToActorList(response.Content));
             }
             catch (Exception ex)
             {
@@ -45,21 +54,25 @@ namespace IbiMovie.WebUI.Controllers
             }
         }
 
-        // Filter by actor name
-        public async Task<IActionResult> FilterByActorName(string searchTerm)
+        //loop through json array and create actor objects
+        private async Task<List<ActorViewModel>> ConvertResponseContentToActorList(HttpContent content)
         {
-            var response = await _httpClient.GetAsync($"actors/{searchTerm}");
+            var jsonDocument = JsonDocument.Parse(await content.ReadAsStringAsync());
+            var results = jsonDocument.RootElement;
 
-            if (!response.IsSuccessStatusCode)
+            var actors = new List<ActorViewModel>();            
+            foreach (var result in results.EnumerateArray())
             {
-                return View("Error");
+                ActorViewModel actor = new ActorViewModel(result);
+                actor.Movies = new List<MovieViewModel>();
+                foreach (var ma in result.GetProperty("movieActors").EnumerateArray())
+                {
+                    actor.Movies.Add(new MovieViewModel(ma.GetProperty("movie")));
+                }
+                actors.Add(actor);
             }
 
-            var responseStream = await response.Content.ReadAsStreamAsync();
-            var actors = await JsonSerializer.DeserializeAsync<IEnumerable<Actor>>(responseStream, _jsonSerializerOptions);
-
-            return View("Index", actors);
+            return actors;
         }
-
     }
 }

@@ -8,23 +8,26 @@ namespace IbiMovie.Core
 {
     public class Movie    {
         public int Id { get; set; }
-        public string Title { get; set; }        
+        public string Title { get; set; }
+        public string? Director { get; set; }
+        public string? Producer { get; set; }
 
-        private int _releasedYear;
-        public int ReleasedYear
+        private DateTime? _released_date;
+        public DateTime? Released_Date
         {
-            get => _releasedYear;
+            get => _released_date;
             set
             {
                 ValidateReleaseYear(value);
-                _releasedYear = value;
+                _released_date = value;
             }
         }        
-        private void ValidateReleaseYear(int year)
+        private void ValidateReleaseYear(DateTime? released_date)
         {
-            if (year < 1800)
+            if (released_date.HasValue)
             {
-                throw new ArgumentException("Movie released year must be later than 1800.");
+                if (released_date.Value.Year < 1800)
+                    throw new ArgumentException("Movie released year must be later than 1800.");
             }
         }
         public ICollection<MovieActor> MovieActors { get; set; } = new List<MovieActor>();

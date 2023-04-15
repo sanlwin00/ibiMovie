@@ -15,31 +15,10 @@
 </form>
 @if (Model != null)
 {
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Name</th>
-                <th>Movies</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var actor in Model)
-            {
-                <tr>
-                    <td>@actor.Name</td>
-                    <td>
-                        <ul>
-                            @foreach (var movieActor in actor.MovieActors)
-                            {
-                                <li>@movieActor.Movie.Title (@movieActor.Movie.ReleasedYear)</li>
-                            }
-                        </ul>
-                    </td>
-                </tr>
-            }
-        </tbody>
-    </table>
+    @await Html.PartialAsync("_ActorCardPartial")
+    
 }
+
 <script>
     document.getElementById('search-form').addEventListener('submit', function (event) {
         event.preventDefault();

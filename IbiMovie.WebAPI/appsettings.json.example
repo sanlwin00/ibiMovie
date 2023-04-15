@@ -1,4 +1,7 @@
 {
+  "ConnectionStrings": {
+    "DefaultConnection": "Server=<hostname/url>;Database=<db>;Uid=<username>;Pwd=<password>"
+  },
   "Logging": {
     "LogLevel": {
       "Default": "Information",

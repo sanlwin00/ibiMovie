@@ -1,4 +1,8 @@
 {
+  "ApiSettings": {
+    "ApiUrl": "https://localhost:7110/api/",
+    "SWApiUrl": "https://swapi.dev/api/"
+  },
   "Logging": {
     "LogLevel": {
       "Default": "Information",

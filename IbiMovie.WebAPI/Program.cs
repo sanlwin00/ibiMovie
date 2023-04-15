@@ -7,12 +7,29 @@ using Pomelo.EntityFrameworkCore.MySql.Infrastructure;
 using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
 
 var builder = WebApplication.CreateBuilder(args);
+<<<<<<< HEAD
 
 // Add MySQL Db Service:
 builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseMySql(builder.Configuration.GetConnectionString("DefaultConnection"),
         new MySqlServerVersion(new Version(8, 0, 0)), 
         b => b.MigrationsAssembly("IbiMovie.WebAPI")));
+=======
+var connectionStr = builder.Configuration.GetConnectionString("DefaultConnection");
+// Add MySQL Db Service:
+builder.Services.AddDbContext<AppDbContext>(options =>
+{
+    options.UseMySql(connectionStr,
+        new MySqlServerVersion(new Version(8, 0, 0)),
+        options => { 
+            options.EnableRetryOnFailure(
+                    maxRetryCount: 5,
+                    maxRetryDelay: System.TimeSpan.FromSeconds(30),
+                    errorNumbersToAdd: null);
+            options.MigrationsAssembly("IbiMovie.WebAPI"); }
+        );
+    });
+>>>>>>> baseline-version
 
 // Inject dependencies
 builder.Services.AddScoped<IActorService, IbiMovie.Infra.Repositories.ActorService>();

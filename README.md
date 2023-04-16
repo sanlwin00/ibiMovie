@@ -19,8 +19,8 @@ The project has the following structure:
 
 By adhering to the Clean Architecture principles and software development best practices, I have created a scalable, maintainable, and testable application that meets the project requirements and demonstrates my expertise in software architecture.
 
-### As a technical lead who is continuously striving to expand my skillset, I am training myself to become a polyglot technologist. I have a keen interest in exploring new programming languages and frameworks, including PHP and Laravel, to broaden my knowledge and adapt to diverse technology ecosystems.
-
+``` As a technical lead who is continuously striving to expand my skillset, I am training myself to become a polyglot technologist. I have a keen interest in exploring new programming languages and frameworks, including PHP and Laravel, to broaden my knowledge and adapt to diverse technology ecosystems.
+```
 ![demo-screenshot1](./demo_screenshot_1.jpg)
 
 ![demo-screenshot2](./demo_screenshot_2.jpg)

@@ -19,8 +19,18 @@ namespace IbiMovie.WebAPI.Controllers
         [HttpGet]
         public async Task<IActionResult> Get()
         {
-            var movies = await _movieService.GetAllAsync();
-            return Ok(movies);
+            try
+            {
+                var movies = await _movieService.GetAllAsync();
+                return Ok(movies);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, new
+                {
+                    error = ex.Message
+                });
+            }
         }
     }
 

@@ -14,19 +14,33 @@ namespace IbiMovie.WebAPI.Controllers
         {
             _actorService = actorService;
         }
-
+        
         [HttpGet]
         public async Task<IActionResult> Get()
         {
-            var actors = await _actorService.GetAllAsync();
-            return Ok(actors);
+            try
+            {
+                var actors = await _actorService.GetAllAsync();
+                return Ok(actors);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, new { error = ex.Message });
+            }
         }
 
         [HttpGet("{name}")]
         public async Task<IActionResult> GetByName(string name)
         {
-            var actors = await _actorService.GetByNameAsync(name);
-            return Ok(actors);
+            try
+            {
+                var actors = await _actorService.GetByNameAsync(name);
+                return Ok(actors);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, new { error = ex.Message });
+            }
         }
     }
 

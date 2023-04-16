@@ -253,7 +253,7 @@ FakesAssemblies/
 _Pvt_Extensions
 
 .config/
-Properties/
+ServiceDependencies/
 
 # Paket dependency manager
 .paket/paket.exe

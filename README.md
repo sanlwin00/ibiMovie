@@ -1,4 +1,4 @@
-# ibiMovie
+# IbiMovie
 
 This is a simple web application with two views - Actor page showcases the association between actors and movies, allowing users to filter by actor names. People page allows users to search Star Wars character by name using SWAPI. Although PHP and Laravel are powerful technologies, I chose to use C# and ASP.NET Core MVC because of my proficiency in those languages.
 

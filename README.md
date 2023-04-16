@@ -19,6 +19,8 @@ The project has the following structure:
 
 By adhering to the Clean Architecture principles and software development best practices, I have created a scalable, maintainable, and testable application that meets the project requirements and demonstrates my expertise in software architecture.
 
+### Screenshots
+
 ![demo-screenshot1](./demo_screenshot_1.jpg)
 
 ![demo-screenshot2](./demo_screenshot_2.jpg)

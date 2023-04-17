@@ -3,11 +3,6 @@ using IbiMovie.Core;
 using IbiMovie.Infra.Data;
 using IbiMovie.Infra.Repositories;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace IbiMovie.Tests
 {

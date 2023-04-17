@@ -27,7 +27,7 @@ namespace IbiMovie.Infra.Repositories
             return await _dbContext.Actors
             .Include(a => a.MovieActors)
                 .ThenInclude(ma => ma.Movie)
-                .Where(a => a.Name.Contains(name))
+                .Where(a => a.Name.ToLower().Contains(name.ToLower()))
                 .ToListAsync();
         }
     }
